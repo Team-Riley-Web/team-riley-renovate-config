@@ -90,11 +90,12 @@
       "automerge": true
     },
     {
-      "description": "Major versions change config (Tailwind 3 to 4, Astro majors): a labelled PR for a person to read, never auto-merged.",
+      "description": "Major versions change config (Tailwind 3 to 4, Astro majors) and usually cannot build without a hand migration. They are listed on the Dependency Dashboard and only become a PR (and a Netlify preview build) when a person ticks the box. Security fixes that need a major still open on their own.",
       "matchUpdateTypes": [
         "major"
       ],
       "automerge": false,
+      "dependencyDashboardApproval": true,
       "labels": [
         "dependencies",
         "major"
@@ -112,10 +113,11 @@
       ]
     },
     {
-      "description": "@lucide/astro stays below 1.0: 1.x removed the brand icons (Facebook, Instagram, YouTube) the site footers use.",
+      "description": "Sites still on @lucide/astro 0.x stay below 1.0: 1.x removed the brand icons (Facebook, Instagram, YouTube) their footers use. Sites already on 1.x update normally, which they need because only newer 1.x releases accept Astro 7.",
       "matchPackageNames": [
         "@lucide/astro"
       ],
+      "matchCurrentVersion": "<1",
       "allowedVersions": "<1"
     }
   ]
