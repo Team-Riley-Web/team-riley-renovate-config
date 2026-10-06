@@ -17,6 +17,10 @@ every repo follows on its next run.
 - **3-day quarantine** on new npm releases (`minimumReleaseAge`) so a
   just-published bad release or supply-chain incident is caught upstream
   first. Security fixes bypass the quarantine.
+- **Rebases only on conflict** (`rebaseWhen: conflicted`). The default for
+  auto-merging PRs is to rebase every open one each time the base branch
+  moves, which re-runs every check; on a busy repo that used up the org's
+  GitHub Actions allowance (2026-10-06).
 - **Runs overnight** (Central time), monthly lockfile maintenance, and a
   Dependency Dashboard issue per repo listing everything pending.
 - `@team-riley/shopify` (pinned git tag in Rosario and CFC) gets a PR per new
