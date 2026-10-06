@@ -102,7 +102,18 @@
       ]
     },
     {
-      "description": "The shared Shopify engine is pinned to a git tag on purpose. A new tag opens a PR to review (run the site's unit + e2e tests), never auto-merged.",
+      "description": "GitHub Actions updates, majors included, are routine: no dashboard approval, auto-merge once the repo's checks pass. A repo with no checks keeps the PR open.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "dependencyDashboardApproval": false,
+      "automerge": true,
+      "labels": [
+        "dependencies"
+      ]
+    },
+    {
+      "description": "The shared Shopify engine is pinned to a git tag on purpose. A new tag is listed on the Dependency Dashboard and becomes a PR only when ticked (Mend's runner cannot fetch git dependencies, so the PR needs its lockfile updated by hand anyway). Never auto-merged.",
       "matchPackageNames": [
         "@team-riley/shopify"
       ],
@@ -110,7 +121,8 @@
       "labels": [
         "dependencies",
         "shopify-engine"
-      ]
+      ],
+      "dependencyDashboardApproval": true
     },
     {
       "description": "Sites still on @lucide/astro 0.x stay below 1.0: 1.x removed the brand icons (Facebook, Instagram, YouTube) their footers use. Sites already on 1.x update normally, which they need because only newer 1.x releases accept Astro 7.",
@@ -119,6 +131,13 @@
       ],
       "matchCurrentVersion": "<1",
       "allowedVersions": "<1"
+    },
+    {
+      "description": "No PRs for the package.json engines field. Netlify takes its Node version from netlify.toml / .nvmrc, so raising the engines floor changes nothing and only adds PRs.",
+      "matchDepTypes": [
+        "engines"
+      ],
+      "enabled": false
     }
   ]
 }
